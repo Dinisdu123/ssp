@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\Cart;
+use App\Models\Review;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -41,4 +44,48 @@ class ProductController extends Controller
     $footwear = Product::where('SubCategory', 'footwear')->get();
     return view('accessories', compact('jewellery', 'footwear'));
 }
+public function show($id)
+    {
+        $product = Product::findOrFail($id);
+        $reviews = Review::with('user')
+            ->where('product_id', $id)
+            ->orderBy('review_date', 'desc')
+            ->get();
+
+        return view('product.show', compact('product', 'reviews'));
+    }
+
+    public function addToCart(Request $request, $id)
+    {
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('error', 'Please log in to add items to your cart.');
+        }
+
+        $request->validate([
+            'quantity' => 'required|integer|min:1',
+        ]);
+
+        $product = Product::findOrFail($id);
+        $userId = Auth::id();
+        $quantity = $request->input('quantity');
+        $totalPrice = $quantity * ($product->price + 400); // Legacy code adds 400 to price
+
+        $cartItem = Cart::where('user_id', $userId)
+            ->where('product_id', $id)
+            ->first();
+            if ($cartItem) {
+                $cartItem->quantity += $quantity;
+                $cartItem->total_price = $cartItem->quantity * ($product->price + 400);
+                $cartItem->save();
+            } else {
+                Cart::create([
+                    'user_id' => $userId,
+                    'product_id' => $id,
+                    'quantity' => $quantity,
+                    'total_price' => $totalPrice,
+                ]);
+            }
+    
+            return redirect()->route('cart.index')->with('success', 'Product added to cart successfully.');
+        }
 }
