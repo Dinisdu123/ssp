@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -13,3 +14,7 @@ Route::post('/product/{id}/add-to-cart', [ProductController::class, 'addToCart']
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index')->middleware('auth');
 Route::post('/cart/{id}/update', [CartController::class, 'update'])->name('cart.update')->middleware('auth');
 Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy')->middleware('auth');
+Route::get('/checkout', function () {
+    return view('cart.checkout');
+})->name('checkout')->middleware('auth');
+Route::get('/order/confirmation/{id}', [OrderController::class, 'confirmation'])->name('order.confirmation')->middleware('auth');
