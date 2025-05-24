@@ -15,8 +15,8 @@ use \Illuminate\Database\Eloquent\Factories\HasFactory;
 class User extends Eloquent implements AuthenticatableContract
 {
 
-    use HasApiTokens, Authenticatable,  HasProfilePhoto, Notifiable, TwoFactorAuthenticatable;
 
+    use HasApiTokens, Authenticatable,  HasProfilePhoto, Notifiable, TwoFactorAuthenticatable;
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory;
     use HasProfilePhoto;

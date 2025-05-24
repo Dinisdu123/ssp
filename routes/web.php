@@ -18,3 +18,16 @@ Route::get('/checkout', function () {
     return view('cart.checkout');
 })->name('checkout')->middleware('auth');
 Route::get('/order/confirmation/{id}', [OrderController::class, 'confirmation'])->name('order.confirmation')->middleware('auth');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/user/profile', function () {
+        $orders = \App\Models\Order::with('items.product')
+            ->where('user_id', \Illuminate\Support\Facades\Auth::user()->id)
+            ->latest('ordered_date')
+            ->get();
+        return view('profile.show', compact('orders'));
+    })->name('profile.show');
+    Route::get('/dashboard', function () {
+        return redirect()->route('profile.show');
+    })->name('dashboard');
+});

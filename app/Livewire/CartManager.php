@@ -36,7 +36,7 @@ class CartManager extends Component
         }
 
         $cartItem->quantity = $quantity;
-        $cartItem->total_price = $quantity * ($product->price + 400);
+        $cartItem->total_price = $quantity * ($product->price + 00);
         $cartItem->save();
 
         $this->loadCart(); // Refresh cart items

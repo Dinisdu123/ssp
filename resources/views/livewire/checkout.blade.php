@@ -29,7 +29,7 @@
             </div>
         </div>
 
-        <h2 class="text-xl sm:text-2xl font-semibold mb-4">Delivery Details</h2>
+        <h2 class="text-xl sm:text-2xl font-semibold mb-4">Delivery Details & Phone number</h2>
         <form wire:submit.prevent="placeOrder">
             <div class="mb-4">
                 <label for="delivery_address" class="block text-sm font-medium text-gray-700">Delivery Address</label>

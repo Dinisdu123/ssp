@@ -6,77 +6,35 @@
     <meta name="description" content="Explore Aurora Luxe's exclusive collection of luxury leather goods, including shoulder bags, mini bags, backpacks, and wallets.">
     <meta name="keywords" content="luxury leather goods, shoulder bags, mini bags, backpacks, wallets, Aurora Luxe">
     <title>Aurora Luxe - Leather Goods</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts for Luxury Typography -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Lora', serif;
-        }
-        h1, h2, h3, h6, .brand {
-            font-family: 'Cinzel', serif;
-            font-weight: 900;
-        }
-        .nav-link {
-            position: relative;
-            transition: color 0.4s ease;
-        }
+        body { font-family: 'Lora', serif; }
+        h1, h2, h3, h6, .brand { font-family: 'Cinzel', serif; font-weight: 900; }
+        .nav-link { position: relative; transition: color 0.4s ease; }
         .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 1px;
-            bottom: -2px;
-            left: 0;
-            background-color: #D4AF37; /* Gold accent */
-            transition: width 0.4s ease;
+            content: ''; position: absolute; width: 0; height: 1px; bottom: -2px; left: 0;
+            background-color: #D4AF37; transition: width 0.4s ease;
         }
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        .product-card {
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-        .product-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-        }
-        .category-link {
-            transition: transform 0.4s ease, opacity 0.4s ease;
-        }
-        .category-link:hover {
-            transform: scale(1.05);
-            opacity: 0.9;
-        }
-        .fade-in {
-            opacity: 0;
-            animation: fadeIn 1.2s ease forwards;
-        }
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
-        .social-icon {
-            transition: background-color 0.4s ease, transform 0.4s ease;
-        }
-        .social-icon:hover {
-            transform: scale(1.1);
-        }
+        .nav-link:hover::after { width: 100%; }
+        .product-card { transition: transform 0.4s ease, box-shadow 0.4s ease; }
+        .product-card:hover { transform: translateY(-4px); box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); }
+        .category-link { transition: transform 0.4s ease, opacity 0.4s ease; }
+        .category-link:hover { transform: scale(1.05); opacity: 0.9; }
+        .fade-in { opacity: 0; animation: fadeIn 1.2s ease forwards; }
+        @keyframes fadeIn { to { opacity: 1; } }
+        .social-icon { transition: background-color 0.4s ease, transform 0.4s ease; }
+        .social-icon:hover { transform: scale(1.1); }
         .button-pulse {
-            background-color: #D4AF37;
-            color: #000000;
-            transition: all 0.4s ease;
+            background-color: #D4AF37; color: #000000; transition: all 0.4s ease;
         }
         .button-pulse:hover {
-            background-color: #b8972e;
-            transform: scale(1.03);
-            box-shadow: 0 0 12px rgba(0, 0, 0, 0.25);
+            background-color: #b8972e; transform: scale(1.03); box-shadow: 0 0 12px rgba(0, 0, 0, 0.25);
         }
     </style>
 </head>
 <body class="bg-white text-black">
-    <!-- Navbar -->
     <nav class="flex flex-wrap items-center justify-between p-4 border-b border-gray-200 bg-white shadow-sm">
         <div class="flex space-x-8 lg:space-x-12">
             <a href="{{ url('/') }}" class="nav-link text-base font-medium text-black hover:text-gray-500 uppercase tracking-wider">Home</a>
@@ -91,9 +49,10 @@
                     <img src="https://cdn-icons-png.flaticon.com/512/1413/1413908.png" alt="Shopping cart icon" class="w-6 h-6 hover:opacity-80 transition-opacity" />
                 </a>
                 @auth
-                    <a href="{{ url('/profile') }}">
-                        <img src="{{ asset('images/profile.png') ?? 'https://cdn-icons-png.flaticon.com/512/149/149071.png' }}" alt="User profile icon" class="w-6 h-6 hover:opacity-80 transition-opacity" />
-                    </a>
+                <a href="{{ route('profile.show') }}">
+    <img src="https://cdn-icons-png.flaticon.com/512/6522/6522516.png" alt="User profile icon" class="w-6 h-6 hover:opacity-80 transition-opacity" />
+</a>
+
                 @else
                     <a href="{{ url('/login') }}" class="nav-link text-base font-medium text-black hover:text-gray-500 uppercase tracking-wider">Login</a>
                 @endauth
@@ -101,7 +60,6 @@
         </div>
     </nav>
 
-    <!-- Product Navbar (Horizontal Row) -->
     <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 mx-6 sm:mx-12 mt-10 justify-center">
         <a href="#shoulder-bags" class="flex flex-col items-center category-link">
             <img src="https://cdn.mitchellstores.com/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBMDhqQ0E9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--51fdac4dbed052160c89526d1513a53425169a0f/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDam9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2QzNKbGMybDZaVWtpRHpJNE1EQjROREl3TUQ0R093WlVPZ3B6ZEhKcGNGUTZFR0YxZEc4dGIzSnBaVzUwVkRvTWNYVmhiR2wwZVVraUNEYzFKUVk3QmxRPSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--2194f4ba90266e988b82b869a61bc64b50c6873c/uploading-1307082-jpg20221021-13-s9tgjr.jpg"
@@ -122,7 +80,6 @@
         </a>
     </div>
 
-    <!-- Products by Category -->
     @foreach ([
         ['id' => 'shoulder-bags', 'name' => 'Shoulder Bags', 'data' => $shoulderBags],
         ['id' => 'mini-bags', 'name' => 'Mini Bags', 'data' => $miniBags],
@@ -147,7 +104,6 @@
         </div>
     @endforeach
 
-    <!-- Footer -->
     <footer class="bg-gray-100 text-center lg:text-left py-12">
         <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-10 text-black">
