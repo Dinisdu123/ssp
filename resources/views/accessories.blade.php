@@ -103,11 +103,11 @@
                 @forelse ($jewellery as $product)
                     <div class="bg-white rounded-lg shadow-md p-4 product-card">
                         <a href="{{ url('product/' . $product->_id) }}">
-                            <img src="{{ e($product->image) }}" alt="{{ e($product->name) }}" class="w-full h-48 object-cover rounded-md fade-in" loading="lazy">
+                            <img src="{{ e($product->image_url) }}" alt="{{ e($product->name) }}" class="w-full h-48 object-cover rounded-md fade-in" loading="lazy">
                         </a>
                         <h3 class="text-base font-medium text-black uppercase tracking-wide mt-4">{{ $product->name }}</h3>
                         <p class="text-gray-700 text-sm mt-2">LKR {{ number_format($product->price, 2) }}</p>
-                        <a href="{{ url('product/' . $product->_id) }}" class="mt-4 inline-block bg-[#D4AF37] text-black py-1.5 px-4 rounded-full text-sm font-medium button-pulse uppercase">Quick View</a>
+                        
                     </div>
                 @empty
                     <p class="text-gray-600 text-base col-span-full text-center">No products found in this category.</p>

@@ -63,7 +63,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
             <!-- Product Image -->
             <div class="flex justify-center">
-                <img src="{{ e($product->image) }}" alt="{{ e($product->name) }}" class="w-full max-w-xs md:max-w-md object-cover rounded shadow-md">
+                <img src="{{ e($product->image_url) }}" alt="{{ e($product->name) }}" class="w-full max-w-xs md:max-w-md object-cover rounded shadow-md">
             </div>
             <!-- Product Details -->
             <div>

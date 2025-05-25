@@ -3,6 +3,7 @@
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ProductController::class, 'index'])->name('home');
@@ -31,3 +32,11 @@ Route::middleware(['auth'])->group(function () {
         return redirect()->route('profile.show');
     })->name('dashboard');
 });
+//admin routes
+Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+Route::get('/admin/orders', [AdminController::class, 'orders'])->name('admin.orders');
+Route::get('/admin/add-item', [AdminController::class, 'addItem'])->name('admin.add-item');
+Route::post('/admin/product/store', [AdminController::class, 'storeProduct'])->name('admin.product.store');
+Route::delete('/admin/product/{id}', [AdminController::class, 'deleteProduct'])->name('admin.product.delete');
+Route::put('/admin/product/update/{id}', [AdminController::class, 'updateProduct'])->name('admin.product.update');
+Route::patch('/admin/order/{id}/status', [AdminController::class, 'updateOrderStatus'])->name('admin.order.update-status');

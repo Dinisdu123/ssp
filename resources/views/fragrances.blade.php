@@ -119,7 +119,7 @@
                 @forelse ($mens as $product)
                     <a href="{{ url('product/' . $product->_id) }}" class="block product-card min-w-[140px]">
                         <div class="bg-white p-4 text-center flex flex-col items-center">
-                            <img src="{{ e($product->image) }}" alt="{{ e($product->name) }}" class="h-36 w-36 object-cover mb-4 rounded-md" loading="lazy">
+                            <img src="{{ e($product->image_url) }}" alt="{{ e($product->name) }}" class="h-36 w-36 object-cover mb-4 rounded-md" loading="lazy">
                             <p class="text-black font-medium text-sm uppercase tracking-wide">{{ $product->name }}</p>
                             <p class="text-gray-700 text-sm mt-2">LKR {{ number_format($product->price, 2) }}</p>
                         </div>
@@ -137,7 +137,7 @@
                 @forelse ($ladies as $product)
                     <a href="{{ url('product/' . $product->_id) }}" class="block product-card min-w-[140px]">
                         <div class="bg-white p-4 text-center flex flex-col items-center">
-                            <img src="{{ e($product->image) }}" alt="{{ e($product->name) }}" class="h-36 w-36 object-cover mb-4 rounded-md" loading="lazy">
+                            <img src="{{ e($product->image_url) }}" alt="{{ e($product->name) }}" class="h-36 w-36 object-cover mb-4 rounded-md" loading="lazy">
                             <p class="text-black font-medium text-sm uppercase tracking-wide">{{ $product->name }}</p>
                             <p class="text-gray-700 text-sm mt-2">LKR {{ number_format($product->price, 2) }}</p>
                         </div>

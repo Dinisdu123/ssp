@@ -115,7 +115,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             @forelse ($newArrivals as $product)
                 <div class="bg-white rounded-lg shadow-md p-4 product-card">
-                    <img class="w-full h-64 object-cover rounded-md" src="{{ e($product->image) }}" alt="{{ e($product->name) }}" loading="lazy">
+                    <img class="w-full h-64 object-cover rounded-md" src="{{ e($product->image_url) }}" alt="{{ e($product->name) }}" loading="lazy">
                     <div class="p-4 text-center">
                         <h3 class="text-base font-medium text-black uppercase tracking-wide">{{ $product->name }}</h3>
                         <p class="text-gray-700 text-sm mt-2">LKR {{ number_format($product->price, 2) }}</p>

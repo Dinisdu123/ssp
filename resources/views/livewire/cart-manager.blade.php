@@ -10,7 +10,7 @@
             @foreach ($cartItems as $item)
                 <div class="flex flex-col sm:flex-row items-center justify-between border p-4 rounded-md bg-gray-50">
                     <div class="flex items-center space-x-4">
-                        <img src="{{ asset($item->product->image_url ?? $item->product->image) }}" alt="{{ e($item->product->name) }}" class="w-20 h-20 object-cover rounded">
+                        <img src="{{ asset($item->product->image_url ?? $item->product->image_url) }}" alt="{{ e($item->product->name) }}" class="w-20 h-20 object-cover rounded">
                         <div>
                             <h3 class="font-semibold">{{ e($item->product->name) }}</h3>
                             <p class="text-gray-600">LKR {{ number_format($item->product->price, 2) }}</p>

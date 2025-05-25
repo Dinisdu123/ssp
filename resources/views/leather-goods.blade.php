@@ -92,7 +92,7 @@
                 @forelse ($category['data'] as $product)
                     <div class="flex flex-col items-center text-center product-card">
                         <a href="{{ url('product/' . $product->_id) }}">
-                            <img src="{{ e($product->image) }}" alt="{{ e($product->name) }}" class="w-48 h-48 mb-4 object-cover rounded-md" loading="lazy">
+                            <img src="{{ e($product->image_url) }}" alt="{{ e($product->name) }}" class="w-48 h-48 mb-4 object-cover rounded-md" loading="lazy">
                         </a>
                         <h3 class="text-base font-semibold text-black uppercase tracking-wide">{{ $product->name }}</h3>
                         <p class="text-gray-700 font-medium text-sm mt-2">LKR {{ number_format($product->price, 2) }}</p>
