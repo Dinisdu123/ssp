@@ -2,26 +2,30 @@
 
 namespace App\Models;
 
-use Illuminate\Auth\Authenticatable;
-use MongoDB\Laravel\Eloquent\Model as Eloquent;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
-use \Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class User extends Eloquent implements AuthenticatableContract
+class User extends Authenticatable
 {
+    use HasApiTokens, HasFactory, HasProfilePhoto, Notifiable, TwoFactorAuthenticatable;
 
+    /**
+     * The connection name for the model.
+     *
+     * @var string
+     */
+    protected $connection = 'mysql';
 
-    use HasApiTokens, Authenticatable,  HasProfilePhoto, Notifiable, TwoFactorAuthenticatable;
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory;
-    use HasProfilePhoto;
-    use Notifiable;
-    use TwoFactorAuthenticatable;
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'users';
 
     /**
      * The attributes that are mass assignable.
@@ -32,6 +36,12 @@ class User extends Eloquent implements AuthenticatableContract
         'name',
         'email',
         'password',
+        'profile_photo_path',
+        'two_factor_secret',
+        'two_factor_recovery_codes',
+        'remember_token',
+        'email_verified_at',
+        'role', // Added role field
     ];
 
     /**
@@ -66,5 +76,15 @@ class User extends Eloquent implements AuthenticatableContract
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Check if the user is an admin.
+     *
+     * @return bool
+     */
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
     }
 }

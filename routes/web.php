@@ -41,3 +41,11 @@ Route::delete('/admin/product/{id}', [AdminController::class, 'deleteProduct'])-
 Route::get('/admin/product/edit/{id}', [AdminController::class, 'editProduct'])->name('admin.product.edit');
 Route::put('/admin/product/update/{id}', [AdminController::class, 'updateProduct'])->name('admin.product.update');
 Route::patch('/admin/order/{id}/status', [AdminController::class, 'updateOrderStatus'])->name('admin.order.update-status');
+
+
+
+// use App\Http\Controllers\HomeController;
+// use App\Http\Controllers\AdminController;
+
+// Route::get('/', [HomeController::class, 'index'])->name('home');
+// Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
