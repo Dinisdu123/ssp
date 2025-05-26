@@ -87,23 +87,37 @@ class AdminController extends Controller
         }
     }
 
-    public function updateProduct(Request $request, $id)
+    public function editProduct($id)
     {
         try {
             $product = Product::findOrFail($id);
-            $product->update([
-                'name' => $request->name,
-                'description' => $request->description,
-                'image_url' => $request->image_url,
-                'price' => (float) $request->price,
-                'stock_quantity' => (int) $request->stock_quantity,
-                'category' => $request->category,
-                'sub_category' => $request->sub_category,
+            Log::info('Editing product', ['id' => $id]);
+            return view('admin.product.edit', compact('product'));
+        } catch (\Exception $e) {
+            Log::error('Error fetching product for edit: ' . $e->getMessage());
+            return redirect()->route('admin.dashboard')->with('error', 'Product not found');
+        }
+    }
+    public function updateProduct(Request $request, $id)
+    {
+        Log::info('Update request data:', $request->all());
+        try {
+            $validated = $request->validate([
+                'name' => 'required|string|max:255',
+                'description' => 'required|string',
+                'image_url' => 'required|string|max:255',
+                'price' => 'required|numeric|min:0',
+                'stock_quantity' => 'required|integer|min:0',
+                'category' => 'required|in:leather-goods,fragrance,accessories',
+                'sub_category' => 'required|in:shoulder bags,minibags,backpacks,wallets,mens,ladies,jewellery,footwear',
             ]);
+            $product = Product::findOrFail($id);
+            $product->update($validated);
+            Log::info('Product updated', ['id' => $id]);
             return redirect()->route('admin.dashboard')->with('success', 'Product updated successfully');
         } catch (\Exception $e) {
             Log::error('Product update error for ID ' . $id . ': ' . $e->getMessage());
-            return redirect()->route('admin.dashboard')->with('error', 'Unable to update product');
+            return redirect()->route('admin.dashboard')->with('error', 'Unable to update product: ' . $e->getMessage());
         }
     }
 }

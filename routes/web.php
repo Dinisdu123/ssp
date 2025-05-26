@@ -38,5 +38,6 @@ Route::get('/admin/orders', [AdminController::class, 'orders'])->name('admin.ord
 Route::get('/admin/add-item', [AdminController::class, 'addItem'])->name('admin.add-item');
 Route::post('/admin/product/store', [AdminController::class, 'storeProduct'])->name('admin.product.store');
 Route::delete('/admin/product/{id}', [AdminController::class, 'deleteProduct'])->name('admin.product.delete');
+Route::get('/admin/product/edit/{id}', [AdminController::class, 'editProduct'])->name('admin.product.edit');
 Route::put('/admin/product/update/{id}', [AdminController::class, 'updateProduct'])->name('admin.product.update');
 Route::patch('/admin/order/{id}/status', [AdminController::class, 'updateOrderStatus'])->name('admin.order.update-status');
