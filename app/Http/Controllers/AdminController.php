@@ -6,16 +6,35 @@ use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
+    /**
+     * Check if the authenticated user is an admin.
+     */
+    private function checkAdminRole(Request $request)
+    {
+        if (!Auth::check() || Auth::user()->role !== 'admin') {
+            if ($request->expectsJson()) {
+                return response()->json(['error' => 'Unauthorized access'], 403);
+            }
+            return redirect()->route('home')->with('error', 'Unauthorized access');
+        }
+        return true;
+    }
+
     public function dashboard(Request $request)
     {
+        // Check if user is admin
+        if ($this->checkAdminRole($request) !== true) {
+            return $this->checkAdminRole($request); // Return the redirect or JSON error
+        }
+
         try {
             $products = Product::all();
             Log::info('Products fetched for dashboard', ['count' => $products->count()]);
 
-            // Check if the request expects JSON (API) or a view (web)
             if ($request->expectsJson()) {
                 return response()->json(['products' => $products], 200);
             }
@@ -30,9 +49,12 @@ class AdminController extends Controller
         }
     }
 
-    // Other methods (orders, addItem, etc.) follow similar logic
     public function orders(Request $request)
     {
+        if ($this->checkAdminRole($request) !== true) {
+            return $this->checkAdminRole($request);
+        }
+
         try {
             $orders = Order::with(['user', 'items.product'])->get();
             Log::info('Orders fetched for admin', ['count' => $orders->count()]);
@@ -51,6 +73,10 @@ class AdminController extends Controller
 
     public function addItem(Request $request)
     {
+        if ($this->checkAdminRole($request) !== true) {
+            return $this->checkAdminRole($request);
+        }
+
         if ($request->expectsJson()) {
             return response()->json(['message' => 'Add item endpoint'], 200);
         }
@@ -59,6 +85,10 @@ class AdminController extends Controller
 
     public function storeProduct(Request $request)
     {
+        if ($this->checkAdminRole($request) !== true) {
+            return $this->checkAdminRole($request);
+        }
+
         try {
             $validated = $request->validate([
                 'name' => 'required|string|max:255',
@@ -87,6 +117,10 @@ class AdminController extends Controller
 
     public function updateOrderStatus(Request $request, $id)
     {
+        if ($this->checkAdminRole($request) !== true) {
+            return $this->checkAdminRole($request);
+        }
+
         try {
             $request->validate([
                 'order_status' => 'required|in:pending,processing,shipped,delivered,cancelled',
@@ -110,6 +144,10 @@ class AdminController extends Controller
 
     public function deleteProduct(Request $request, $id)
     {
+        if ($this->checkAdminRole($request) !== true) {
+            return $this->checkAdminRole($request);
+        }
+
         try {
             $product = Product::findOrFail($id);
             $product->delete();
@@ -128,6 +166,10 @@ class AdminController extends Controller
 
     public function editProduct(Request $request, $id)
     {
+        if ($this->checkAdminRole($request) !== true) {
+            return $this->checkAdminRole($request);
+        }
+
         try {
             $product = Product::findOrFail($id);
             Log::info('Editing product', ['id' => $id]);
@@ -146,6 +188,10 @@ class AdminController extends Controller
 
     public function updateProduct(Request $request, $id)
     {
+        if ($this->checkAdminRole($request) !== true) {
+            return $this->checkAdminRole($request);
+        }
+
         try {
             $validated = $request->validate([
                 'name' => 'required|string|max:255',

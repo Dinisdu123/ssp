@@ -15,10 +15,10 @@ Route::post('/product/{id}/add-to-cart', [ProductController::class, 'addToCart']
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index')->middleware('auth');
 Route::post('/cart/{id}/update', [CartController::class, 'update'])->name('cart.update')->middleware('auth');
 Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy')->middleware('auth');
+Route::get('/order/confirmation/{id}', [OrderController::class, 'confirmation'])->name('order.confirmation')->middleware('auth');
 Route::get('/checkout', function () {
     return view('cart.checkout');
 })->name('checkout')->middleware('auth');
-Route::get('/order/confirmation/{id}', [OrderController::class, 'confirmation'])->name('order.confirmation')->middleware('auth');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/user/profile', function () {
@@ -32,8 +32,8 @@ Route::middleware(['auth'])->group(function () {
         return redirect()->route('profile.show');
     })->name('dashboard');
 });
+
 //admin routes
-Route::middleware(['auth', 'is_admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/admin/orders', [AdminController::class, 'orders'])->name('admin.orders');
     Route::get('/admin/add-item', [AdminController::class, 'addItem'])->name('admin.add-item');
@@ -42,5 +42,5 @@ Route::middleware(['auth', 'is_admin'])->group(function () {
     Route::get('/admin/product/edit/{id}', [AdminController::class, 'editProduct'])->name('admin.product.edit');
     Route::put('/admin/product/update/{id}', [AdminController::class, 'updateProduct'])->name('admin.product.update');
     Route::patch('/admin/order/{id}/status', [AdminController::class, 'updateOrderStatus'])->name('admin.order.update-status');
-});
+
 
