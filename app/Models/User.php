@@ -87,4 +87,9 @@ class User extends Authenticatable
     {
         return $this->role === 'admin';
     }
+    public function createTokenForRole()
+{
+    $abilities = $this->isAdmin() ? ['admin-access', 'product:manage', 'order:manage'] : ['user-access'];
+    return $this->createToken('auth_token', $abilities);
+}
 }

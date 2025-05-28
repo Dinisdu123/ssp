@@ -33,19 +33,14 @@ Route::middleware(['auth'])->group(function () {
     })->name('dashboard');
 });
 //admin routes
-Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-Route::get('/admin/orders', [AdminController::class, 'orders'])->name('admin.orders');
-Route::get('/admin/add-item', [AdminController::class, 'addItem'])->name('admin.add-item');
-Route::post('/admin/product/store', [AdminController::class, 'storeProduct'])->name('admin.product.store');
-Route::delete('/admin/product/{id}', [AdminController::class, 'deleteProduct'])->name('admin.product.delete');
-Route::get('/admin/product/edit/{id}', [AdminController::class, 'editProduct'])->name('admin.product.edit');
-Route::put('/admin/product/update/{id}', [AdminController::class, 'updateProduct'])->name('admin.product.update');
-Route::patch('/admin/order/{id}/status', [AdminController::class, 'updateOrderStatus'])->name('admin.order.update-status');
+Route::middleware(['auth', 'is_admin'])->group(function () {
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('/admin/orders', [AdminController::class, 'orders'])->name('admin.orders');
+    Route::get('/admin/add-item', [AdminController::class, 'addItem'])->name('admin.add-item');
+    Route::post('/admin/product/store', [AdminController::class, 'storeProduct'])->name('admin.product.store');
+    Route::delete('/admin/product/{id}', [AdminController::class, 'deleteProduct'])->name('admin.product.delete');
+    Route::get('/admin/product/edit/{id}', [AdminController::class, 'editProduct'])->name('admin.product.edit');
+    Route::put('/admin/product/update/{id}', [AdminController::class, 'updateProduct'])->name('admin.product.update');
+    Route::patch('/admin/order/{id}/status', [AdminController::class, 'updateOrderStatus'])->name('admin.order.update-status');
+});
 
-
-
-// use App\Http\Controllers\HomeController;
-// use App\Http\Controllers\AdminController;
-
-// Route::get('/', [HomeController::class, 'index'])->name('home');
-// Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
