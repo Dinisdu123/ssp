@@ -14,7 +14,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-// Admin routes (protected by Sanctum and role check)
+// Admin routes 
 Route::middleware(['auth:sanctum', 'abilities:admin-access', 'is_admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard']);
     Route::get('/admin/orders', [AdminController::class, 'orders']);
@@ -25,3 +25,10 @@ Route::middleware(['auth:sanctum', 'abilities:admin-access', 'is_admin'])->group
     Route::get('/admin/products/{id}/edit', [AdminController::class, 'editProduct']);
     Route::put('/admin/products/{id}', [AdminController::class, 'updateProduct']);
 });
+
+//Customer routes
+use App\Http\Controllers\API\ProductController;
+
+Route::get('/products/fragrances', [ProductController::class, 'fragrances']);
+Route::get('/products/leather-goods', [ProductController::class, 'leatherGoods']);
+Route::get('/products/accessories', [ProductController::class, 'accessories']);

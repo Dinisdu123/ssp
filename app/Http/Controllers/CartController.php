@@ -13,7 +13,7 @@ class CartController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth'); // Restrict to authenticated users
+        $this->middleware('auth');
     }
 
     public function index()

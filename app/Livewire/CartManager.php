@@ -32,14 +32,14 @@ class CartManager extends Component
         $product = Product::findOrFail($cartItem->product_id);
 
         if ($quantity < 1) {
-            $quantity = 1; // Prevent negative or zero quantities
+            $quantity = 1; 
         }
 
         $cartItem->quantity = $quantity;
         $cartItem->total_price = $quantity * ($product->price + 00);
         $cartItem->save();
 
-        $this->loadCart(); // Refresh cart items
+        $this->loadCart(); 
         $this->dispatch('cartUpdated');
     }
 

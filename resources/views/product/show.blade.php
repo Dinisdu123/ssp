@@ -33,7 +33,6 @@
     </style>
 </head>
 <body class="bg-white text-black">
-    <!-- Navbar -->
     <nav class="flex flex-wrap items-center justify-between p-4 border-b border-gray-200 bg-white shadow-sm">
         <div class="flex space-x-8 lg:space-x-12">
             <a href="{{ url('/') }}" class="nav-link text-base font-medium text-black hover:text-gray-500 uppercase tracking-wider">Home</a>
@@ -58,7 +57,6 @@
         </div>
     </nav>
 
-    <!-- Product Details Section -->
     <div class="container mx-auto mt-10 px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
             <!-- Product Image -->
@@ -98,7 +96,6 @@
 
     
 
-    <!-- Footer -->
     <footer class="bg-gray-100 text-center lg:text-left py-12">
         <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-10 text-black">

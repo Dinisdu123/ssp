@@ -12,7 +12,7 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         if (! $request->expectsJson()) {
-            return route('login'); // this works with Jetstream too
+            return route('login'); 
         }
     }
 }

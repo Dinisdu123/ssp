@@ -41,7 +41,7 @@ class SubmitReview extends Component
 
         $this->reset(['rating', 'reviewText']);
         session()->flash('success', 'Review submitted successfully.');
-        $this->dispatch('reviewSubmitted'); // Updated from emit to dispatch
+        $this->dispatch('reviewSubmitted'); 
     }
 
     public function render()

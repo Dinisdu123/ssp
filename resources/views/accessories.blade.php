@@ -6,9 +6,7 @@
     <meta name="description" content="Explore Aurora Luxe's exquisite collection of luxury jewellery and footwear, designed for elegance and sophistication.">
     <meta name="keywords" content="luxury jewellery, luxury footwear, accessories, Aurora Luxe">
     <title>Aurora Luxe - Accessories</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts for Luxury Typography -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
@@ -69,7 +67,6 @@
     </style>
 </head>
 <body class="bg-white text-black">
-    <!-- Navbar -->
     <nav class="flex flex-wrap items-center justify-between p-4 border-b border-gray-200 bg-white shadow-sm">
         <div class="flex space-x-8 lg:space-x-12">
             <a href="{{ url('/') }}" class="nav-link text-base font-medium text-black hover:text-gray-500 uppercase tracking-wider">Home</a>
@@ -135,7 +132,6 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <footer class="bg-gray-100 text-center lg:text-left py-12">
         <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-10 text-black">

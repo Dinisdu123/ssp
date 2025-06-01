@@ -6,9 +6,7 @@
     <meta name="description" content="Discover Aurora Luxe’s exclusive collections of luxury leather goods, fragrances, and accessories, crafted for sophistication and individuality.">
     <meta name="keywords" content="luxury goods, leather goods, fragrances, accessories, Aurora Luxe">
     <title>Aurora Luxe</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts for Luxury Typography -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;7
 00;900&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -31,7 +29,7 @@
             height: 1px;
             bottom: -2px;
             left: 0;
-            background-color: #D4AF37; /* Gold accent */
+            background-color: #D4AF37;
             transition: width 0.4s ease;
         }
         .nav-link:hover::after {
@@ -70,7 +68,6 @@
     </style>
 </head>
 <body class="bg-white text-black">
-    <!-- Navbar -->
     <nav class="flex flex-wrap items-center justify-between p-4 border-b border-gray-200 bg-white shadow-sm">
         <div class="flex space-x-8 lg:space-x-12">
             <a href="{{ url('/') }}" class="nav-link text-base font-medium text-black hover:text-gray-500 uppercase tracking-wider">Home</a>
@@ -96,7 +93,6 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <div class="relative h-[80vh] flex items-center justify-center">
         <img src="https://wwd.com/wp-content/uploads/2021/05/AP21139119186897-1.jpeg" 
              alt="Luxury fashion showcase with elegant accessories" class="w-full h-full object-cover fade-in" loading="lazy">
@@ -109,7 +105,6 @@
         </div>
     </div>
 
-    <!-- Featured Products Section -->
     <section class="container mx-auto px-6 sm:px-8 lg:px-12 py-16">
         <h2 class="text-2xl font-bold text-center text-black tracking-wider uppercase mb-6">Featured Collections</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -130,7 +125,7 @@
         </div>
     </section>
 
-    <!-- Brand Story Section -->
+
     <section class="text-center mt-16 px-6 sm:px-8 lg:px-12 py-16">
         <h2 class="text-2xl sm:text-3xl font-bold text-black tracking-wider uppercase">Luxury of Art</h2>
         <p class="mt-6 max-w-3xl mx-auto text-gray-700 text-base leading-relaxed italic">

@@ -23,17 +23,17 @@ class OrderController extends Controller
         ]);
 
         try {
-            // Use MongoDB transaction for data consistency
+         
             return DB::connection('mongodb')->transaction(function () use ($request) {
                 $cartItems = Cart::where('user_id', Auth::id())->with('product')->get();
                 if ($cartItems->isEmpty()) {
                     return redirect()->route('cart.index')->with('error', 'Cart is empty.');
                 }
 
-                // Calculate total price
+             
                 $totalPrice = $cartItems->sum('total_price');
 
-                // Create order
+              
                 $order = Order::create([
                     'user_id' => Auth::id(),
                     'ordered_date' => now(),
@@ -42,7 +42,7 @@ class OrderController extends Controller
                     'total_price' => $totalPrice,
                 ]);
 
-                // Create order items and update stock
+    
                 foreach ($cartItems as $cartItem) {
                     $product = $cartItem->product;
                     if ($product->stock_quantity < $cartItem->quantity) {

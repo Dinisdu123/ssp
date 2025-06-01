@@ -6,9 +6,7 @@
     <meta name="description" content="Discover Aurora Luxe's luxurious fragrances for men and women, crafted for elegance and individuality.">
     <meta name="keywords" content="luxury fragrances, men's fragrances, women's fragrances, Aurora Luxe">
     <title>Aurora Luxe - Fragrances</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts for Luxury Typography -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
@@ -30,7 +28,7 @@
             height: 1px;
             bottom: -2px;
             left: 0;
-            background-color: #D4AF37; /* Gold accent */
+            background-color: #D4AF37; 
             transition: width 0.4s ease;
         }
         .nav-link:hover::after {
@@ -69,7 +67,6 @@
     </style>
 </head>
 <body class="bg-white text-black">
-    <!-- Navbar -->
     <nav class="flex flex-wrap items-center justify-between p-4 border-b border-gray-200 bg-white shadow-sm">
         <div class="flex space-x-8 lg:space-x-12">
             <a href="{{ url('/') }}" class="nav-link text-base font-medium text-black hover:text-gray-500 uppercase tracking-wider">Home</a>
@@ -95,7 +92,6 @@
         </div>
     </nav>
 
-    <!-- Cover Photo and Paragraph -->
     <div class="flex flex-col lg:flex-row bg-gray-100 h-auto lg:h-[400px] fade-in">
         <div class="lg:w-1/2 w-full">
             <img src="https://wwd.com/wp-content/uploads/2022/02/Top-100-B-Inc.jpg?crop=245px%2C809px%2C1162px%2C650px&resize=1000%2C563" alt="Luxury fragrance bottle display" class="w-full h-full object-cover rounded-r-lg" loading="lazy">

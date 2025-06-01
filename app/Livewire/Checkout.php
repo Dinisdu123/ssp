@@ -61,7 +61,7 @@ class Checkout extends Component
                     'order_id' => $order->_id,
                     'product_id' => $item->product_id,
                     'quantity' => $item->quantity,
-                    'unit_price' => $item->product->price + 400, // Legacy +400 LKR
+                    'unit_price' => $item->product->price + 0, 
                     'total_price' => $item->total_price,
                 ]);
             }

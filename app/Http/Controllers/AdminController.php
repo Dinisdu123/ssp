@@ -10,9 +10,6 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
-    /**
-     * Check if the authenticated user is an admin.
-     */
     private function checkAdminRole(Request $request)
     {
         if (!Auth::check() || Auth::user()->role !== 'admin') {
@@ -26,9 +23,9 @@ class AdminController extends Controller
 
     public function dashboard(Request $request)
     {
-        // Check if user is admin
+       
         if ($this->checkAdminRole($request) !== true) {
-            return $this->checkAdminRole($request); // Return the redirect or JSON error
+            return $this->checkAdminRole($request); 
         }
 
         try {
