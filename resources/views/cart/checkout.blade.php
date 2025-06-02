@@ -27,7 +27,6 @@
     </style>
 </head>
 <body class="bg-white text-black">
-    <!-- Navbar -->
     <nav class="flex flex-wrap items-center justify-between p-4 border-b border-gray-200 bg-white shadow-sm">
         <div class="flex space-x-8 lg:space-x-12">
             <a href="{{ url('/') }}" class="nav-link text-base font-medium text-black hover:text-gray-500 uppercase tracking-wider">Home</a>
@@ -42,9 +41,9 @@
                     <img src="https://cdn-icons-png.flaticon.com/512/1413/1413908.png" alt="Shopping cart icon" class="w-6 h-6 hover:opacity-80 transition-opacity" />
                 </a>
                 @auth
-                    <a href="{{ url('/profile') }}">
-                        <img src="{{ asset('images/profile.png') ?? 'https://cdn-icons-png.flaticon.com/512/149/149071.png' }}" alt="User profile icon" class="w-6 h-6 hover:opacity-80 transition-opacity" />
-                    </a>
+                <a href="{{ route('profile.show') }}">
+                    <img src="https://cdn-icons-png.flaticon.com/512/6522/6522516.png" alt="User profile icon" class="w-6 h-6 hover:opacity-80 transition-opacity" />
+                </a>
                 @else
                     <a href="{{ url('/login') }}" class="nav-link text-base font-medium text-black hover:text-gray-500 uppercase tracking-wider">Login</a>
                 @endauth

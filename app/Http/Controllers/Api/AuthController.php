@@ -5,8 +5,8 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use App\Actions\Fortify\CreateNewUser;
-use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -19,10 +19,19 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
-            // Use createTokenForRole to generate a token with role-based abilities
-            // $token = $user->createTokenForRole()->plainTextToken;
+            if (!$user) {
+                Log::error('User is null after Auth::attempt');
+                return response()->json(['error' => 'User not found'], 500);
+            }
+            Log::info('User class: ' . get_class($user));
+            Log::info('User methods: ' . print_r(get_class_methods($user), true));
+            if (!method_exists($user, 'createTokenForRole')) {
+                Log::error('createTokenForRole method not found on User');
+                return response()->json(['error' => 'Method createTokenForRole not found'], 500);
+            }
+            $token = $user->createTokenForRole()->plainTextToken;
             return response()->json([
-                // 'token' => $token,
+                'token' => $token,
                 'user' => [
                     'id' => $user->id,
                     'name' => $user->name,
@@ -63,7 +72,7 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        $request->user()->currentAccessToken()->delete();
+        $request->user()->tokens()->delete(); // Delete all tokens for the user
         return response()->json(['message' => 'Logged out'], 200);
     }
 

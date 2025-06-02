@@ -29,10 +29,10 @@
             </div>
         </div>
 
-        <h2 class="text-xl sm:text-2xl font-semibold mb-4">Delivery Details & Phone number</h2>
+        <h2 class="text-xl sm:text-2xl font-semibold mb-4">Delivery Details </h2>
         <form wire:submit.prevent="placeOrder">
             <div class="mb-4">
-                <label for="delivery_address" class="block text-sm font-medium text-gray-700">Delivery Address</label>
+                <label for="delivery_address" class="block text-sm font-medium text-gray-700">Please enter Name Delivery Address and phone number</label>
                 <textarea wire:model="deliveryAddress" id="delivery_address" rows="4" class="border p-2 rounded-md w-full"></textarea>
                 @error('deliveryAddress') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
             </div>

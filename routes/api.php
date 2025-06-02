@@ -1,34 +1,30 @@
 <?php
-use App\Http\Controllers\api\AuthController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\DataController;
+use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\AdminController;
+use Illuminate\Support\Facades\Route;
 
-// Authentication routes
+// Public routes
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
-
-// Existing route for authenticated user
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
-
-// Admin routes 
-Route::middleware(['auth:sanctum', 'abilities:admin-access', 'is_admin'])->group(function () {
-    Route::get('/admin/dashboard', [AdminController::class, 'dashboard']);
-    Route::get('/admin/orders', [AdminController::class, 'orders']);
-    Route::get('/admin/add-item', [AdminController::class, 'addItem']);
-    Route::post('/admin/products', [AdminController::class, 'storeProduct']);
-    Route::put('/admin/orders/{id}/status', [AdminController::class, 'updateOrderStatus']);
-    Route::delete('/admin/products/{id}', [AdminController::class, 'deleteProduct']);
-    Route::get('/admin/products/{id}/edit', [AdminController::class, 'editProduct']);
-    Route::put('/admin/products/{id}', [AdminController::class, 'updateProduct']);
-});
-
-//Customer routes
-use App\Http\Controllers\API\ProductController;
-
 Route::get('/products/fragrances', [ProductController::class, 'fragrances']);
 Route::get('/products/leather-goods', [ProductController::class, 'leatherGoods']);
 Route::get('/products/accessories', [ProductController::class, 'accessories']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/user', [AuthController::class, 'user']);
+    Route::get('/data', [DataController::class, 'index']);
+    
+    // Admin routes 
+    Route::middleware('abilities:admin-access')->group(function () {
+        Route::get('/products', [AdminController::class, 'getProducts']);
+        Route::get('/products/{id}', [AdminController::class, 'getProduct']);
+        Route::post('/products', [AdminController::class, 'storeProduct'])->middleware('ability:product:manage');
+        Route::put('/products/{id}', [AdminController::class, 'updateProduct'])->middleware('ability:product:manage');
+        Route::delete('/products/{id}', [AdminController::class, 'deleteProduct'])->middleware('ability:product:manage');
+        Route::get('/orders', [AdminController::class, 'getOrders']);
+        Route::put('/orders/{id}/status', [AdminController::class, 'updateOrderStatus'])->middleware('ability:order:manage');
+    });
+});

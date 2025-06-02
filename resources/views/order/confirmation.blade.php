@@ -27,7 +27,6 @@
     </style>
 </head>
 <body class="bg-white text-black">
-    <!-- Navbar -->
     <nav class="flex flex-wrap items-center justify-between p-4 border-b border-gray-200 bg-white shadow-sm">
         <div class="flex space-x-8 lg:space-x-12">
             <a href="{{ url('/') }}" class="nav-link text-base font-medium text-black hover:text-gray-500 uppercase tracking-wider">Home</a>
@@ -42,17 +41,16 @@
                     <img src="https://cdn-icons-png.flaticon.com/512/1413/1413908.png" alt="Shopping cart icon" class="w-6 h-6 hover:opacity-80 transition-opacity" />
                 </a>
                 @auth
-                    <a href="{{ url('/profile') }}">
-                        <img src="{{ asset('images/profile.png') ?? 'https://cdn-icons-png.flaticon.com/512/149/149071.png' }}" alt="User profile icon" class="w-6 h-6 hover:opacity-80 transition-opacity" />
-                    </a>
-                @else
-                    <a href="{{ url('/login') }}" class="nav-link text-base font-medium text-black hover:text-gray-500 uppercase tracking-wider">Login</a>
-                @endauth
+    <a href="{{ route('profile.show') }}">
+        <img src="https://cdn-icons-png.flaticon.com/512/6522/6522516.png" alt="User profile icon" class="w-6 h-6 hover:opacity-80 transition-opacity" />
+    </a>
+    @else
+        <a href="{{ url('/login') }}" class="nav-link text-base font-medium text-black hover:text-gray-500 uppercase tracking-wider">Login</a>
+    @endauth
             </div>
         </div>
     </nav>
 
-    <!-- Order Confirmation Section -->
     <div class="container mx-auto px-4 py-12">
         <h1 class="text-2xl sm:text-3xl font-bold text-black tracking-wider uppercase mb-6">Order Confirmation</h1>
         <p class="text-gray-600 mb-4">Thank you for your order! Your order has been placed successfully.</p>
@@ -78,7 +76,6 @@
         <a href="{{ url('/') }}" class="inline-block bg-black text-white py-2 px-6 rounded-md hover:bg-gray-800 mt-6 button-pulse">Continue Shopping</a>
     </div>
 
-    <!-- Footer -->
     <footer class="bg-gray-100 text-center lg:text-left py-12">
         <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-10 text-black">

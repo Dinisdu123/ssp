@@ -42,12 +42,12 @@
                     <img src="https://cdn-icons-png.flaticon.com/512/1413/1413908.png" alt="Shopping cart icon" class="w-6 h-6 hover:opacity-80 transition-opacity" />
                 </a>
                 @auth
-                    <a href="{{ url('/profile') }}">
-                        <img src="{{ asset('images/profile.png') ?? 'https://cdn-icons-png.flaticon.com/512/149/149071.png' }}" alt="User profile icon" class="w-6 h-6 hover:opacity-80 transition-opacity" />
-                    </a>
-                @else
-                    <a href="{{ url('/login') }}" class="nav-link text-base font-medium text-black hover:text-gray-500 uppercase tracking-wider">Login</a>
-                @endauth
+    <a href="{{ route('profile.show') }}">
+        <img src="https://cdn-icons-png.flaticon.com/512/6522/6522516.png" alt="User profile icon" class="w-6 h-6 hover:opacity-80 transition-opacity" />
+    </a>
+@else
+    <a href="{{ url('/login') }}" class="nav-link text-base font-medium text-black hover:text-gray-500 uppercase tracking-wider">Login</a>
+@endauth
             </div>
         </div>
     </nav>

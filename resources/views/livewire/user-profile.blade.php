@@ -8,7 +8,6 @@
 
     <h1 class="text-2xl sm:text-3xl font-bold text-black tracking-wider uppercase mb-6">My Profile</h1>
 
-    <!-- User Details -->
     <div class="border p-4 rounded-md bg-gray-50 mb-8">
         <h2 class="text-xl font-semibold mb-4">User Information</h2>
         <p><strong>Name:</strong> {{ e($user->name) }}</p>
@@ -16,7 +15,6 @@
         <button wire:click="logout" class="bg-red-600 text-white py-2 px-6 rounded-md hover:bg-red-800 button-pulse mt-4">Logout</button>
     </div>
 
-    <!-- Order History -->
     <h2 class="text-xl sm:text-2xl font-semibold mb-4">Order History</h2>
     @if ($orders->isEmpty())
         <p class="text-gray-600">You have no orders yet.</p>

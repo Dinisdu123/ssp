@@ -47,7 +47,7 @@ class FortifyServiceProvider extends ServiceProvider
                         return redirect()->intended(route('admin.dashboard'));
                     }
 
-                    return redirect()->intended(route('home')); // Customers to /
+                    return redirect()->intended(route('home')); 
                 }
             };
         });
